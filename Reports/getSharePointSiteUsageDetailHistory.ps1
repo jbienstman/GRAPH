@@ -69,7 +69,7 @@ $reportFilePath = ($PSScriptRoot.TrimEnd("\") + $reportFileRelativePath)
 if ($outputEnabled) {Write-Host ("Retrieving [$graphApiReportName] report for ($graphApiPeriodValue) Period:") -ForegroundColor Cyan -NoNewline}
 if ((Test-Path -Path $reportFilePath) -and $overwriteExistingReports -eq $false)
     {
-    $renamedItemFullPath = Rename-ItemAppendDateProperty -itemFullPath $reportFilePath -propertyName 'Report Refresh Date' -outputEnabled:$outputEnabled
+    Rename-ItemAppendDateProperty -itemFullPath $reportFilePath -propertyName 'Report Refresh Date' -outputEnabled:$outputEnabled | Out-Null
     }
 $report = $null
 $report = Get-GraphApiResultsWithAutoThrottle -uri $graphApiReportUri -headers $Headers -method Get -contentType "application/json" -outputEnabled:$outputEnabled
